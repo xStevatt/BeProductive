@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Anna Wróbel">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="image/x-icon" rel="icon" href="../../favicon.ico">
+    <title>To-do app</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Material+Icons" rel="stylesheet"
+          type="text/css">
+    <!--build:css css/app.min.css-->
+    <link rel="stylesheet" href="css/application.css">
+    <!--endbuild-->
+</head>
+<body>
+<div class="container">
+    <button id="js-save" class="button save">Save</button>
+    <section class="todo__add">
+        <div class="todo__title-wrap" id="js-label-add">
+            <label for="js-new-task" class="section__title section__title--add">Add Item</label>
+        </div>
+        <input id="js-new-task" class="text-input task__input--new" type="text">
+        <button id="js-add-button" class="button"><i class="material-icons icon__add">add_circle</i></button>
+    </section>
+    <section class="todo__list">
+        <div class="todo__title-wrap todo__title-wrap--todo" id="js-todo">
+            <h3 class="section__title">To-do</h3>
+        </div>
+        <ul id="js-incomplete-tasks" class="list">
+            <li class="task">
+                <input type="checkbox" class="task__checkbox">
+                <label class="task__title">Enjoy!</label>
+                <input type="text" class="text-input task__input">
+                <button class="button task__delete"><i class="material-icons icon__delete">delete</i></button>
+                <button class="button task__edit"><i class="material-icons icon__edit">mode_edit</i></button>
+            </li>
+        </ul>
+    </section>
+    <section class="todo__done">
+        <div class="todo__title-wrap" id="js-completed">
+            <h3 class="section__title">Completed</h3></div>
+        <ul id="js-completed-tasks" class="list">
+            <li class="task">
+                <input type="checkbox" class="task__checkbox" checked>
+                <label class="task__title is-done">Local storage</label>
+                <input type="text" class="text-input task__input">
+                <button class="button task__delete"><i class="material-icons icon__delete">delete</i></button>
+                <button class="button task__edit"><i class="material-icons icon__edit">mode_edit</i></button>
+            </li>
+            <li class="task">
+                <input type="checkbox" class="task__checkbox" checked>
+                <label class="task__title is-done">Adding new tasks</label>
+                <input type="text" class="text-input task__input">
+                <button class="button task__delete"><i class="material-icons icon__delete">delete</i></button>
+                <button class="button task__edit"><i class="material-icons icon__edit">mode_edit</i></button>
+            </li>
+            <li class="task">
+                <input type="checkbox" class="task__checkbox" checked>
+                <label class="task__title is-done">Editing tasks</label>
+                <input type="text" class="text-input task__input">
+                <button class="button task__delete"><i class="material-icons icon__delete">delete</i></button>
+                <button class="button task__edit"><i class="material-icons icon__edit">mode_edit</i></button>
+            </li>
+            <li class="task">
+                <input type="checkbox" class="task__checkbox" checked>
+                <label class="task__title is-done">Deleting tasks</label>
+                <input type="text" class="text-input task__input">
+                <button class="button task__delete"><i class="material-icons icon__delete">delete</i></button>
+                <button class="button task__edit"><i class="material-icons icon__edit">mode_edit</i></button>
+            </li>
+        </ul>
+    </section>
+</div>
+<!--build:js js/main.min.js -->
+<script src="js/app.js"></script>
+<!-- endbuild -->
+</body>
+</html>
