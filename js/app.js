@@ -1,5 +1,3 @@
-'use strict';
-
 const body = document.body;
 const labelAdd = document.getElementById('js-label-add');
 const taskInput = document.getElementById('js-new-task');
