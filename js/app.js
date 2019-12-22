@@ -35,7 +35,7 @@ function setNewLength()
   if(todoListL <= 1)
     document.getElementById('todo-counter').innerHTML = "You are one activity behind. Keep it up!";
   else
-    document.getElementById('todo-counter').innerHTML = "You haven't done " + todoListL + " things yet. Keep it up!";
+    document.getElementById('todo-counter').innerHTML = "You haven't done " + todoListL + " activities yet. Keep it up!";
   if(doneListL <= 1)
     document.getElementById('done-counter').innerHTML = "You have completed one activity! That's good!";
   else
@@ -85,12 +85,13 @@ function start()
   startTime(); 
   setNewLength();
   getCompliments();
+  setChecked(); 
+  setUnchecked();
 }
 
 // Checkboxes always checked/unchecked depending on the list
 function setChecked()
 { 
-  alert("sono qui"); 
   let checkedTasks = doneList.querySelectorAll('input[type=checkbox]');
   for(let i = 0; i < checkedTasks.length; i++) 
   {
