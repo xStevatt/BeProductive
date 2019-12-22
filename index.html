@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <!-- HEAD -->
 <head>
-    <!-- METADATA -->
+    <!-- METADATA: AUTHOR, CONTENT, ICON, TITLE -->
     <meta charset="UTF-8">
     <meta name="author" content="Stefano Valloncini">
+    <meta name="content" content="A simple to-do list to make your life easier">
     <link type="image/x-icon" rel="icon" href="favicon.ico">
     <title>TO-DO list: organize your life</title>
 
-    <!-- CSS -->
+    <!-- CSS: FONTS, STYLESHEETS -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700|Material+Icons" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="css/application.css">
@@ -19,32 +19,33 @@
 <!-- BODY -->
 <body onload="start()" >
 
+    <!-- TITLE TO-DO -->
     <div class="titlecontainer">
         <span class="text1">Welcome to</span>
         <span class="text2">your TO-DO list</span>
     </div>
+    
+    <!-- MOTIVATIONAL QUOTE (BY API) -->
+    <i><div id="motivational" class="time"></div></i>
+    
+    <!-- DESCRIPTION -->
+    <div class="description">
 
-    <br />
-    
-    <div id="time" class="time"></div>
-    <div id="motivational" class="time"></div>
-    
+        <p>This simple to-do list will make your life easier.</p>
+        Current time: 
+        <div id="time" class="time"></div>
+    </div>
+
+    <!-- MAIN CONTAINER: TO-DO LIST -->
     <div class="container">
         <!-- BUTTONS IN THE TOP -->
         <button id="js-save" class="button save">Save</button>
         <button id="js-delete" class="button delete">Delete</button>
 
-        <!-- DESCRIPTION -->
-        <div class="description">
-            <p>
-                This is a TO-DO list made to make your <b>life easier</b>
-            </p> 
-        </div>
-
         <!-- ADD ITEM SECTION -->
         <section class="todo__add">
             <div class="todo__title-wrap" id="js-label-add">
-                <label for="js-new-task" class="section__title section__title--add">Add Item</label>
+                <label for="js-new-task" class="section__title section__title--add">Add a new Item</label>
             </div>
             <input id="js-new-task" class="text-input task__input--new" type="text">
             <button id="js-add-button" class="button"><i class="material-icons icon__add">add_circle</i></button>
@@ -61,10 +62,13 @@
                     <label class="task__title">Writing this for Scandale!</label>
                     <input type="text" class="text-input task__input">
 
+                    <!-- BUTTONS: DELETE, EDIT -->
                     <button class="button task__delete"><i class="material-icons icon__delete">delete</i></button>
                     <button class="button task__edit"><i class="material-icons icon__edit">mode_edit</i></button>
                 </li>
             </ul>
+            <!-- TO-DO ITEM(S) COUNTER -->
+            <div id="todo-counter" class="counter"></div>
         </section>
 
         <!-- COMPLETED LIST SECTION -->
@@ -72,39 +76,49 @@
             <div class="todo__title-wrap" id="js-completed">
                 <h3 class="section__title">Completed</h3></div>
             <ul id="js-completed-tasks" class="list">
+                <!-- COMPLETED ITEM 1 -->
                 <li class="task">
                     <input type="checkbox" class="task__checkbox" checked>
                     <label class="task__title is-done">Add a new item</label>
                     <input type="text" class="text-input task__input">
-
+                    
+                    <!-- BUTTONS: DELETE, EDIT -->
                     <button class="button task__delete"><i class="material-icons icon__delete">delete</i></button>
                     <button class="button task__edit"><i class="material-icons icon__edit">mode_edit</i></button>
                 </li>
+                <!-- COMPLETED ITEM 2 -->
                 <li class="task">
                     <input type="checkbox" class="task__checkbox" checked>
                     <label class="task__title is-done">Remove an item</label>
                     <input type="text" class="text-input task__input">
 
+                    <!-- BUTTONS: DELETE, EDIT -->
                     <button class="button task__delete"><i class="material-icons icon__delete">delete</i></button>
                     <button class="button task__edit"><i class="material-icons icon__edit">mode_edit</i></button>
                 </li>
+                <!-- COMPLETED ITEM 3 -->
                 <li class="task">
                     <input type="checkbox" class="task__checkbox" checked>
                     <label class="task__title is-done">Check as done</label>
                     <input type="text" class="text-input task__input">
 
+                    <!-- BUTTONS: DELETE, EDIT -->
                     <button class="button task__delete"><i class="material-icons icon__delete">delete</i></button>
                     <button class="button task__edit"><i class="material-icons icon__edit">mode_edit</i></button>
                 </li>
+                <!-- COMPLETED ITEM 4 -->
                 <li class="task">
                     <input type="checkbox" class="task__checkbox" checked>
                     <label class="task__title is-done">Local Storage</label>
                     <input type="text" class="text-input task__input">
 
+                    <!-- BUTTONS: DELETE, EDIT -->
                     <button class="button task__delete"><i class="material-icons icon__delete">delete</i></button>
                     <button class="button task__edit"><i class="material-icons icon__edit">mode_edit</i></button>
                 </li>
             </ul>
+            <!-- COMPLETED ITEM(S) COUNTER -->
+            <div id="done-counter" class="counter"></div>
         </section>
     </div>
 

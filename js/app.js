@@ -10,9 +10,48 @@ let uncheckedTasks = todoList.querySelectorAll('input[type=checkbox]');
 let checkedTasks = doneList.querySelectorAll('input[type=checkbox]');
 const saveButton = document.getElementById("js-save");
 
-// clock
 
+function getCompliments()
+{
+  let requestURL = 'https://complimentr.com/api';
+  let request = new XMLHttpRequest();
+  request.open('GET', requestURL);
+  request.responseType = 'json';
+  request.send();
 
+  request.onload = function() 
+  {
+    var jsoncompliment = request.response;
+
+    document.getElementById('motivational').innerHTML = jsoncompliment.compliment.toUpperCase();
+  }
+}
+
+function setNewLength()
+{
+  var todoListL = todoList.querySelectorAll('input[type=checkbox]').length;
+  var doneListL = doneList.querySelectorAll('input[type=checkbox]').length; 
+
+  document.getElementById('todo-counter').innerHTML = "You haven't done " + todoListL + " things yet. Keep up!";
+  document.getElementById('done-counter').innerHTML = "You have done " + doneListL + " things so far. Good job!";
+
+  console.log("TO DO counter says " + todoListL); 
+  console.log("DONE counter says " + doneListL); 
+}
+
+function getDate()
+{
+  var today = new Date(); 
+  var h = today.getHours(); 
+  var m = today.getMinutes(); 
+  var s = today.getSeconds(); 
+
+  h = checkTime(h); 
+  m = checkTime(m); 
+  s = checkTime(s); 
+
+  var date = h + ":" + m + ":" + s; 
+}
 
 function startTime()
 {
@@ -38,16 +77,11 @@ function checkTime(time)
   return time; 
 }
 
-function getCompliment()
-{
-  var complimenter = require("complimenter");
-  console.log(complimenter);
-}
-
 function start()
 {
   startTime(); 
-  getCompliment(); 
+  setNewLength();
+  getCompliments();
 }
 
 // Checkboxes always checked/unchecked depending on the list

@@ -1,3 +1,9 @@
+.counter{
+  text-align: right;
+  font-style: italic;
+  color: #888; 
+}
+
 .svg-wrapper {
   position: relative;
   top: 50%;
@@ -94,10 +100,8 @@ h3 {
  }
 
 .description{
-  overflow: hidden;
-  font-style: bold;
-  margin-right: 100px ;
-  text-align: justify;
+  position: relative;
+  text-align: center;
 }
 
 .todo__done {
