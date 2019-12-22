@@ -32,11 +32,14 @@ function setNewLength()
   var todoListL = todoList.querySelectorAll('input[type=checkbox]').length;
   var doneListL = doneList.querySelectorAll('input[type=checkbox]').length; 
 
-  document.getElementById('todo-counter').innerHTML = "You haven't done " + todoListL + " things yet. Keep up!";
-  document.getElementById('done-counter').innerHTML = "You have done " + doneListL + " things so far. Good job!";
-
-  console.log("TO DO counter says " + todoListL); 
-  console.log("DONE counter says " + doneListL); 
+  if(todoListL <= 1)
+    document.getElementById('todo-counter').innerHTML = "You are one activity behind. Keep it up!";
+  else
+    document.getElementById('todo-counter').innerHTML = "You haven't done " + todoListL + " things yet. Keep it up!";
+  if(doneListL <= 1)
+    document.getElementById('done-counter').innerHTML = "You have completed one activity! That's good!";
+  else
+    document.getElementById('done-counter').innerHTML = "You have completed " + doneListL + " activities so far.";
 }
 
 function getDate()
@@ -184,9 +187,11 @@ const moveToOtherList = (listItem, currentList) => {
   switch (currentList) {
     case 'js-incomplete-tasks':
       doneList.appendChild(listItem);
+      setNewLength(); 
       break;
     case 'js-completed-tasks':
       todoList.appendChild(listItem);
+      setNewLength(); 
       break;
   }
 };
