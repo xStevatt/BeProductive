@@ -1,36 +1,47 @@
-html {
+html 
+{
   overflow: -moz-scrollbars-vertical;
-  overflow-y: scroll; }
+  overflow-y: scroll; 
+}
 
-body {
+body 
+{
   background: #2CC990;
-  background: linear-gradient(to left, #2CC990, #1abc9c);
-  font-family: Lato, sans-serif; }
+  font-family: Roboto, sans-serif; 
+}
 
 input,
 button {
   outline: none; }
 
-ul {
-  margin: 0;
-  padding: 0; }
+ul 
+{
+  margin: 20;
+  padding: 0; 
+}
 
 li * {
-  float: left; }
+  float: left;
+  list-style-type: circle 
+}
 
 li,
 h3 {
   clear: both;
-  list-style: none; }
+  list-style: none; 
+}
+
 
 .container {
   display: block;
-  width: 400px;
+  width: 700px;
   margin: 50px auto;
   padding: 39px 40px 60px 40px;
   background-color: #FEFEFE;
-  border-radius: 5px;
-  box-shadow: 7px 7px 10px 0 rgba(0, 0, 0, 0.5); }
+  border-radius: 40px;
+  box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.5);
+ }
+
 
 .todo__done {
   padding-top: 18px;
@@ -48,15 +59,19 @@ h3 {
   .button:hover {
     color: #333; }
 
-.section__title {
+.section__title
+ {
+  font-family: Roboto, sans-serif;
   color: #333;
+  text-align: left;
   font-weight: 700;
   font-size: 15px;
   border-bottom: 2px solid #333;
   padding: 20px 0 10px;
   margin: 0;
   text-transform: uppercase;
-  cursor: pointer; }
+  cursor: pointer; 
+}
 
 .section__title--add {
   display: block;
@@ -99,7 +114,7 @@ h3 {
   border: 1px solid #ddd;
   background: #FEFEFE;
   border-radius: 6px;
-  font-family: Lato, sans-serif;
+  font-family: Roboto, sans-serif; 
   color: #888; }
 
 .text-input:focus {
@@ -114,8 +129,10 @@ h3 {
 .material-icons {
   font-size: 22px; }
 
-.task__delete:hover {
-  color: #e53935; }
+.task__delete:hover 
+{
+  color: #e53935; 
+}
 
 .task__input {
   display: none;
@@ -127,12 +144,15 @@ h3 {
   border: 1px solid #ddd;
   background: #FEFEFE;
   border-radius: 6px;
-  font-family: Lato, sans-serif;
+  font-family: Roboto, sans-serif; 
   color: #888; }
   .task__input:focus {
     border-color: #BDBDBD; }
 
-.save {
+.save
+ {
+  font-family: Roboto, sans-serif; 
+  margin-right: 10px;
   width: auto;
   font-size: 16px;
   text-align: left;
@@ -146,13 +166,44 @@ h3 {
   background-color: #e53935;
   box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5);
   transition-property: color, background-color;
-  transition: .3s ease-in-out; }
+  transition: .3s ease-in-out; 
+}
 
 .save:hover,
 .save:focus,
-.save:active {
+.save:active 
+{
   background-color: #9C27B0;
-  color: #FEFEFE; }
+  color: #FEFEFE;
+ }
+
+.delete
+{
+  font-family: Roboto, sans-serif; 
+  margin-right: 10px;
+  width: auto;
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #FEFEFE;
+  position: relative;
+  top: -46px;
+  padding: 12px;
+  border-radius: 0 0 5px 5px;
+  background-color: #e53935;
+  box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5);
+  transition-property: color, background-color;
+  transition: .3s ease-in-out; 
+}
+
+.delete:hover,
+.delete:focus,
+.delete:active 
+{
+  background-color: #9C27B0;
+  color: #FEFEFE; 
+}
 
 .overlay {
   position: fixed;
@@ -204,4 +255,3 @@ h3 {
   margin-bottom: 4px;
   padding: 8px 0 9px 11px; }
 
-/*# sourceMappingURL=application.css.map */
