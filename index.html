@@ -3,34 +3,42 @@
 
 <!-- HEAD -->
 <head>
+    <!-- METADATA -->
     <meta charset="UTF-8">
     <meta name="author" content="Stefano Valloncini">
-    <script src="js/particles-js"></script>
-    <link type="image/x-icon" rel="icon" href="../../favicon.ico">
+    <link type="image/x-icon" rel="icon" href="favicon.ico">
     <title>TO-DO list: organize your life</title>
+
+    <!-- CSS -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700|Material+Icons" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="css/application.css">
+    <link rel="stylesheet" href="css/titleanimation.css">
 </head>
 
 <!-- BODY -->
-<body>
-<div id="particles-js">
+<body onload="start()" >
+
+    <div class="titlecontainer">
+        <span class="text1">Welcome to</span>
+        <span class="text2">your TO-DO list</span>
+    </div>
+
+    <br />
+    
+    <div id="time" class="time"></div>
+    <div id="motivational" class="time"></div>
+    
     <div class="container">
+        <!-- BUTTONS IN THE TOP -->
         <button id="js-save" class="button save">Save</button>
-        <button id="js-save" class="button delete">Delete</button>
-        <br/>
+        <button id="js-delete" class="button delete">Delete</button>
 
         <!-- DESCRIPTION -->
         <div class="description">
-            <p>This is a TO-DO list made for you to make your life easier. </p>    
-            <ul>
-                <li>
-                    To save your edits, please press SAVE
-                </li>
-                <li>
-                    To delete every item from the list, press DELETE.  
-                </li>
-            </ul>
+            <p>
+                This is a TO-DO list made to make your <b>life easier</b>
+            </p> 
         </div>
 
         <!-- ADD ITEM SECTION -->
@@ -99,7 +107,14 @@
             </ul>
         </section>
     </div>
-</div>
+
+    <div class="svg-wrapper">
+        <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
+            <rect class="shape" height="60" width="320" />
+            <div class="text"><a href="https://stefanovalloncini.com">Stefano Valloncini</a></div>
+        </svg>
+    </div>
+<!-- SCRIPT -->
 <script src="js/app.js"></script>
 </body>
 </html>

@@ -10,24 +10,77 @@ let uncheckedTasks = todoList.querySelectorAll('input[type=checkbox]');
 let checkedTasks = doneList.querySelectorAll('input[type=checkbox]');
 const saveButton = document.getElementById("js-save");
 
-// Checkboxes always checked/unchecked depending on the list
-for(let i = 0; i < checkedTasks.length; i++) {
-  checkedTasks[i].checked = true;
+// clock
+
+
+
+function startTime()
+{
+  var today = new Date(); 
+  var h = today.getHours(); 
+  var m = today.getMinutes(); 
+  var s = today.getSeconds(); 
+
+  h = checkTime(h); 
+  m = checkTime(m); 
+  s = checkTime(s); 
+
+  document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
+  var t = setTimeout(startTime, 500);
 }
-for(let i = 0; i < uncheckedTasks.length; i++) {
-  uncheckedTasks[i].checked = false;
+
+function checkTime(time)
+{
+  if(time < 10)
+  {
+    time = "0" + time; 
+  }
+  return time; 
+}
+
+function getCompliment()
+{
+  var complimenter = require("complimenter");
+  console.log(complimenter);
+}
+
+function start()
+{
+  startTime(); 
+  getCompliment(); 
+}
+
+// Checkboxes always checked/unchecked depending on the list
+function setChecked()
+{ 
+  alert("sono qui"); 
+  let checkedTasks = doneList.querySelectorAll('input[type=checkbox]');
+  for(let i = 0; i < checkedTasks.length; i++) 
+  {
+    checkedTasks[i].checked = true;
+  }
+}
+
+function setUnchecked()
+{
+  let uncheckedTasks = todoList.querySelectorAll('input[type=checkbox]');
+  for(let i = 0; i < uncheckedTasks.length; i++) 
+  {
+    uncheckedTasks[i].checked = false;
+  }
 }
 
 // Adding new task
 const addTask = () => {
   let taskName = taskInput.value;
-  if (taskName !== '' && taskName !== ' ') {
+  if (taskName !== '' && taskName !== ' ') 
+  {
     let newTask = createNewTask(taskName);
     todoList.appendChild(newTask);
     todoList.classList.toggle('show');
     taskInput.value = '';
   }
-};
+}; 
 
 const createNewTask = (taskTitle) => {
   let listItem = document.createElement('li');
@@ -137,19 +190,26 @@ const deleteTask = function (ul, listItem, divContainer,) {
   body.removeChild(divContainer);
 };
 
+
 // Add event listeners to edit/delete buttons
-const whatToDo = (e) => {
+const whatToDo = (e) => 
+{
   let listItem = e.target.parentNode;
-  if (e.target.classList.contains('icon__edit')) {
+  if (e.target.classList.contains('icon__edit'))
+   {
     listItem = e.target.parentNode.parentNode;
     editTask(listItem);
-  } else if (e.target.classList.contains('task__title')) {
+  } else if (e.target.classList.contains('task__title')) 
+  {
     editTask(listItem);
   }
-  else if (e.target.classList.contains('icon__delete')) {
+  else if (e.target.classList.contains('icon__delete')) 
+  {
     let buttonClicked = e.target.parentNode;
     confirmDialogue(buttonClicked);
-  } else if (e.target.type === 'checkbox') {
+  } 
+  else if (e.target.type === 'checkbox') 
+  {
     let currentList = listItem.parentNode.id;
     moveToOtherList(listItem, currentList);
   }
