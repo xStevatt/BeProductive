@@ -1,3 +1,4 @@
+
 const body = document.body;
 const labelAdd = document.getElementById('js-label-add');
 const taskInput = document.getElementById('js-new-task');
@@ -9,7 +10,6 @@ const doneHeader = document.getElementById('js-completed');
 let uncheckedTasks = todoList.querySelectorAll('input[type=checkbox]');
 let checkedTasks = doneList.querySelectorAll('input[type=checkbox]');
 const saveButton = document.getElementById("js-save");
-
 
 function getCompliments()
 {
@@ -32,14 +32,29 @@ function setNewLength()
   var todoListL = todoList.querySelectorAll('input[type=checkbox]').length;
   var doneListL = doneList.querySelectorAll('input[type=checkbox]').length; 
 
-  if(todoListL <= 1)
-    document.getElementById('todo-counter').innerHTML = "You are one activity behind. Keep it up!";
-  else
-    document.getElementById('todo-counter').innerHTML = "You haven't done " + todoListL + " activities yet. Keep it up!";
-  if(doneListL <= 1)
+  switch(todoListL)
+  {
+    case 0: 
+      document.getElementById('todo-counter').innerHTML = "You have completed every activity, GOOD JOB!";
+      break; 
+    case 1: 
+      document.getElementById('todo-counter').innerHTML = "You are one activity behind. Keep it up!";
+      break; 
+    default: 
+      document.getElementById('todo-counter').innerHTML = "You haven't done " + todoListL + " activities yet. Keep it up!";
+  }
+
+  switch(doneListL)
+  {
+    case 0: 
+    document.getElementById('done-counter').innerHTML = "You haven't completed any activities!";
+      break; 
+    case 1: 
     document.getElementById('done-counter').innerHTML = "You have completed one activity! That's good!";
-  else
-    document.getElementById('done-counter').innerHTML = "You have completed " + doneListL + " activities so far.";
+      break; 
+    default: 
+      document.getElementById('done-counter').innerHTML = "You have completed " + doneListL + " activities so far.";
+  }
 }
 
 function getDate()
@@ -54,6 +69,7 @@ function getDate()
   s = checkTime(s); 
 
   var date = h + ":" + m + ":" + s; 
+  return date; 
 }
 
 function startTime()
@@ -67,7 +83,7 @@ function startTime()
   m = checkTime(m); 
   s = checkTime(s); 
 
-  document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
+  document.getElementById('time').innerHTML = "Current time: " + h + ":" + m + ":" + s;
   var t = setTimeout(startTime, 500);
 }
 
@@ -111,11 +127,15 @@ function setUnchecked()
 // Adding new task
 const addTask = () => {
   let taskName = taskInput.value;
+  let taskDate = getDate().bold(); 
+
   if (taskName !== '' && taskName !== ' ') 
   {
-    let newTask = createNewTask(taskName);
-    todoList.appendChild(newTask);
-    todoList.classList.toggle('show');
+    let newTask = createNewTask(taskName + " " + taskDate);
+
+    todoList.appendChild(newTask); // APPEND the newer child
+    setNewLength()
+    todoList.classList.toggle('show');  
     taskInput.value = '';
   }
 }; 
@@ -129,6 +149,7 @@ const createNewTask = (taskTitle) => {
   let iconEdit = document.createElement('i');
   let iconDelete = document.createElement('i');
   let deleteButton = document.createElement('button');
+
   listItem.className = 'task';
   checkBox.type = 'checkbox';
   checkBox.className = 'task__checkbox';
@@ -153,18 +174,25 @@ const createNewTask = (taskTitle) => {
 };
 
 // Editing task
-const editTask = (taskToEdit) => {
+const editTask = (taskToEdit) => 
+{
   let listItem = taskToEdit;
   let editInput = listItem.querySelector('input[type=text]');
   let checkBox = listItem.querySelector('input[type=checkbox]');
   let iconEdit = listItem.getElementsByTagName('i')[1];
   let label = listItem.querySelector('label');
   let containsClass = listItem.classList.contains('is-editing');
-  if (containsClass) {
+  
+  if (containsClass) 
+  {
+    // cancellare la data, dopo la modifica rimetterlo 
     label.innerText = editInput.value;
     iconEdit.innerText = 'mode_edit';
     checkBox.disabled = false;
-  } else {
+  } 
+  
+  else 
+  {
     editInput.value = label.innerText;
     iconEdit.innerText = 'playlist_add_check';
     checkBox.disabled = true;
@@ -185,7 +213,9 @@ const editTask = (taskToEdit) => {
 const moveToOtherList = (listItem, currentList) => {
   let label = listItem.getElementsByTagName('label')[0];
   label.classList.toggle('is-done');
-  switch (currentList) {
+
+  switch (currentList) 
+  {
     case 'js-incomplete-tasks':
       doneList.appendChild(listItem);
       setNewLength(); 
@@ -216,11 +246,14 @@ const confirmDialogue = function (buttonClicked) {
   divContainer.appendChild(alertContainer);
   body.appendChild(divContainer);
 
-  yesButton.addEventListener('click', function () {
+  yesButton.addEventListener('click', function () 
+  {
     deleteTask(ul, listItem, divContainer);
+    setNewLength(); 
   });
 
-  noButton.addEventListener('click', function () {
+  noButton.addEventListener('click', function () 
+  {
     body.removeChild(divContainer);
   });
 };

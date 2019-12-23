@@ -1,58 +1,3 @@
-.counter{
-  text-align: right;
-  font-style: italic;
-  color: #888; 
-}
-
-.svg-wrapper {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  margin: 0 auto;
-  width: 320px;
-}
-
-.shape 
-{
-  stroke-dasharray: 140 540;
-  stroke-dashoffset: -474;
-  stroke-width: 8px;
-  fill: transparent;
-  stroke: #8e24aa;
-  border-bottom: 8px solid black;
-  transition: stroke-width 1s, stroke-dashoffset 1s, stroke-dasharray 1s;
-}
-
-.text
- {
-  font-family: 'Roboto Condensed', sans-serif;
-  font-style: bold;
-  font-size: 20px;
-  text-align: center;
-  line-height: 32px;
-  letter-spacing: 8px;
-  color: #fff;
-  top: -48px;
-  position: relative;
-}
-
-.text a {
-  color: #FFFFFF;
-  text-decoration: none;
-}
-
-.svg-wrapper:hover .shape 
-{
-  stroke-width: 4px;
-  stroke-dashoffset: 0;
-  stroke-dasharray: 760;
-}
-
-.time{
-  font-family: Roboto, sans-serif;
-  text-align: center;
-  font-size: 20px;
-}
 
 html 
 {
@@ -86,6 +31,80 @@ h3 {
   list-style: none; 
 }
 
+.counter{
+  text-align: right;
+  font-style: italic;
+  color: #888; 
+}
+
+.svg-wrapper {
+  font-family: 'Roboto Condensed', sans-serif;
+  letter-spacing: 8px; 
+  position: relative;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 auto;
+  width: 320px;
+}
+
+.shape 
+{
+  stroke-dasharray: 140 540;
+  stroke-dashoffset: -474;
+  stroke-width: 8px;
+  fill: transparent;
+  stroke: #8e24aa;
+  border-bottom: 8px solid black;
+  transition: stroke-width 1s, stroke-dashoffset 1s, stroke-dasharray 1s;
+}
+
+.text
+ {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-style: bold;
+  font-size: 20px;
+  text-align: center;
+  line-height: 32px;
+  letter-spacing: 8px;
+  color: #fff;
+  top: -48px;
+  position: relative;
+}
+
+.date{
+  font-family: 'Roboto Condensed', sans-serif;
+  margin-left: 500px;
+  font-style: italic;
+  position: absolute; 
+}
+
+.text a {
+  color: #FFFFFF;
+  text-align: left;
+  text-decoration: none;
+}
+
+.svg-wrapper:hover .shape 
+{
+  font-family: 'Roboto Condensed', sans-serif;
+  stroke-width: 4px;
+  stroke-dashoffset: 0;
+  stroke-dasharray: 760;
+}
+
+.time{
+  font-family: 'Roboto Condensed', sans-serif;
+  text-align: center;
+  font-size: 40px;
+}
+
+.motivational
+{ 
+  font-family: 'Roboto Condensed', sans-serif;
+  text-align: center;
+  font-size: 20px;
+}
 
 .container {
   display: block;
@@ -102,6 +121,7 @@ h3 {
 .description{
   position: relative;
   text-align: center;
+  font-size: 40px;
 }
 
 .todo__done {
@@ -138,8 +158,10 @@ h3 {
   display: block;
   margin: 0 0 20px; }
 
-.task__title, .task__checkbox {
-  cursor: pointer; }
+.task__title, .task__checkbox 
+{
+  cursor: pointer; 
+}
 
 .task {
   overflow: hidden;
@@ -155,7 +177,8 @@ h3 {
   font-size: 16px;
   line-height: 16px;
   width: 290px;
-  padding: 12px 0 10px 11px; }
+  padding: 12px 0 10px 11px; 
+ }
 
 .task__input {
   width: 285px; }
@@ -166,8 +189,8 @@ h3 {
   .task__input--new:focus {
     border-color: #BDBDBD; }
 
-.text-input {
-  margin: 0;
+.text-input
+ {
   font-size: 16px;
   line-height: 16px;
   height: 16px;
@@ -176,7 +199,8 @@ h3 {
   background: #FEFEFE;
   border-radius: 6px;
   font-family: Roboto, sans-serif; 
-  color: #888; }
+  color: #888; 
+}
 
 .text-input:focus {
   color: #333; }
@@ -197,18 +221,20 @@ h3 {
 
 .task__input {
   display: none;
-  margin: 0;
   font-size: 16px;
   line-height: 16px;
   height: 16px;
   padding: 10px;
   border: 1px solid #ddd;
   background: #FEFEFE;
-  border-radius: 6px;
+  border-radius: 10px;
   font-family: Roboto, sans-serif; 
   color: #888; }
-  .task__input:focus {
-    border-color: #BDBDBD; }
+
+  .task__input:focus 
+  {
+    border-color: #BDBDBD; 
+  }
 
 .save
  {
@@ -315,23 +341,3 @@ h3 {
   margin-top: 1px;
   margin-bottom: 4px;
   padding: 8px 0 9px 11px; }
-
-
-  .visit_MyWebsite{
-    font-family: Roboto, sans-serif; 
-    margin-top: 30px; 
-    width: auto;
-    font-size: 16px;
-    text-align: left;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #FEFEFE;
-    position: relative;
-    padding: 12px;
-    border-radius: 0 0 5px 5px;
-    background-color: #e53935;
-    box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5);
-    transition-property: color, background-color;
-    transition: .3s ease-in-out; 
-  }
-  
