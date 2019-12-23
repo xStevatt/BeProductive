@@ -23,7 +23,7 @@
     <!-- PARTICLES DIV -->
     <div id="particles-js"></div>
 
-    <!-- TITLE ANIMATION -->
+    <!-- TITLE ANIMATION complimentr.com/ -->
     <div class="titlecontainer">
         <span class="text1">Welcome to</span>
         <span class="text2">your TO-DO list</span>
@@ -40,11 +40,14 @@
     <!-- MAIN CONTAINER: TO-DO LIST -->
     <div class="container">
         <!-- BUTTONS IN THE TOP -->
-        <button id="js-save" class="button save">Save</button>
-        <button id="js-delete-todo" class="button delete">delete todo</button>
-        <button id="js-delete-done" class="button delete">delete done</button>
-        <button id="js-delete-all" class="button delete">delete all</button>
+        <div class="buttons">
+            <!--button id="js-save" class="button save">Save</!--button-->
+            <button id="js-delete-todo" class="button1">delete todo</button>
+            <button id="js-delete-done" class="button2">delete done</button>
+            <button id="js-delete-all" class="button3">delete all</button>
+        </div>
 
+        <br /> <br />
         <!-- ADD ITEM SECTION -->
         <section class="todo__add">
             <div class="todo__title-wrap" id="js-label-add">
@@ -60,6 +63,29 @@
                 <h3 class="section__title">To-do</h3>
             </div>
             <ul id="js-incomplete-tasks" class="list">
+                <!-- TO-DO ITEM 1 -->
+                <li class="task">
+                    <input type="checkbox" class="task__checkbox">
+                    <label class="task__title">Complete this TO-DO list.</label>
+                    <label class="date">11:53:30</label>
+                    <input type="text" class="text-input task__input">
+
+                    <!-- BUTTONS: DELETE, EDIT -->
+                    <button class="button task__delete"><i class="material-icons icon__delete">delete</i></button>
+                    <button class="button task__edit"><i class="material-icons icon__edit">mode_edit</i></button>
+                </li>
+                <!-- TO-DO ITEM 2 -->
+                <li class="task">
+                    <input type="checkbox" class="task__checkbox">
+                    <label class="task__title">Scandale</label>
+                    <label class="date">11:53:30</label>
+                    <input type="text" class="text-input task__input">
+
+                    <!-- BUTTONS: DELETE, EDIT -->
+                    <button class="button task__delete"><i class="material-icons icon__delete">delete</i></button>
+                    <button class="button task__edit"><i class="material-icons icon__edit">mode_edit</i></button>
+                </li>
+                <!-- TO-DO ITEM 3 -->
                 <li class="task">
                     <input type="checkbox" class="task__checkbox">
                     <label class="task__title">Writing this for Scandale!</label>

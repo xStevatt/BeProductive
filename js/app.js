@@ -90,7 +90,20 @@ function startTime()
   m = checkTime(m); 
   s = checkTime(s); 
 
-  document.getElementById('time').innerHTML = "Current time: " + h + ":" + m + ":" + s;
+  if(h > 0)
+  {
+      document.getElementById('time').innerHTML = "Good morning it's: " + h + ":" + m + ":" + s;
+  }
+
+  if(h > 12 && h < 18)
+  {
+      document.getElementById('time').innerHTML = "Good afternoon it's: " + h + ":" + m + ":" + s;
+  }
+
+  if(h >= 18)
+  {
+      document.getElementById('time').innerHTML = "Good evening it's: " + h + ":" + m + ":" + s;
+  }
   var t = setTimeout(startTime, 500);
 }
 
@@ -322,7 +335,7 @@ buttonAdd.addEventListener('click', addTask);
 // delete everything button
 deleteButtonTODO.addEventListener('click', () =>
     {
-      document.getElementById("js-incomplete-tasks").removeChild(); 
+      document.getElementById("js-incomplete-tasks").innerHTML = "";
       setNewLength(); 
     }
 ); 
