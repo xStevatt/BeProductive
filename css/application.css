@@ -117,7 +117,7 @@ h3 {
 
 .time
 {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Roboto Mono', monospace;
   text-align: center;
   font-size: 25px;
 }
@@ -134,6 +134,7 @@ h3 {
   display: block;
   width: 700px;
   margin: 50px auto;
+  margin-bottom: 0px;
   margin-top: 10px;
   margin-bottom: 70px;
   padding: 39px 40px 60px 40px;
@@ -160,7 +161,6 @@ h3 {
   background: none;
   border: 0;
   color: #888;
-  float: right;
   width: 25px;
   margin: 7px 0 0 0;
   padding: 0;
@@ -178,7 +178,7 @@ h3 {
   text-align: left;
   font-weight: 700;
   font-size: 15px;
-  border-bottom: 2px solid #333;
+  border-bottom: 2px solid #9C27B0;
   padding: 20px 0 10px;
   margin: 0;
   text-transform: uppercase;
@@ -241,7 +241,7 @@ h3 {
   border: 1px solid #ddd;
   background: #FEFEFE;
   border-radius: 6px;
-  font-family: Roboto, sans-serif; 
+  font-family: 'Roboto mono', monospace; 
   color: #888; 
 }
 
@@ -257,7 +257,7 @@ h3 {
 
 .icon__add:hover 
 {
-  background-color: #2CC990; 
+  background-color: #9C27B0; 
 }
 
 .material-icons 
@@ -291,42 +291,42 @@ h3 {
 
 .save
  {
-  font-family: Roboto, sans-serif; 
-  margin-right: 20px;
-  margin-left: 10px;
-  width: auto;
+  font-family: 'Roboto mono', monospace; 
+  letter-spacing: 6px; 
+  display: inline-block;
   font-size: 16px;
-  text-align: left;
+  text-align: center;
   font-weight: bold;
   text-transform: uppercase;
   color: #FEFEFE;
-  position: relative;
   top: -46px;
   padding: 12px;
-  border-radius: 0 0 5px 5px;
-  background-color: #35e54c;
+  border-radius: 5px 5px 5px 5px;
+  background-color: #9C27B0;
   box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5);
-  transition-property: color, background-color;
-  transition: .3s ease-in-out; 
+  width: 320px;
 }
 
 .save:hover,
 .save:focus,
 .save:active 
 {
-  background-color: rgb(15, 78, 39);
+  background-color: rgb(91, 11, 105);
   color: #FEFEFE;
  }
 
-.buttons{
+.buttons
+{
+  font-family: 'Roboto mono', monospace;
   position: relative; 
   display: inline-block;
+  text-align: center;
 }
 
 .button1{
-  font-family: Roboto, sans-serif; 
+  font-family: 'Roboto Mono', monospace;
   margin-left: 70px;
-  margin-right: 40px;
+  margin-right: 35px;
   width: auto;
   font-size: 16px;
   text-align: left;
@@ -351,9 +351,9 @@ h3 {
 }
 
 .button2{
-  font-family: Roboto, sans-serif; 
-  margin-left: 45px;
-  margin-right: 40px;
+  font-family: 'Roboto Mono', monospace;
+  margin-left: 35px;
+  margin-right: 35px;
   width: auto;
   font-size: 16px;
   text-align: left;
@@ -378,8 +378,8 @@ h3 {
 }
 
 .button3{
-  font-family: Roboto, sans-serif; 
-  margin-left: 40px;
+  font-family: 'Roboto Mono', monospace;
+  margin-left: 35px;
   margin-right: 70px;
   width: auto;
   font-size: 16px;
