@@ -1,4 +1,3 @@
-
 const body = document.body;
 const labelAdd = document.getElementById('js-label-add');
 const taskInput = document.getElementById('js-new-task');
@@ -9,7 +8,13 @@ const doneList = document.getElementById('js-completed-tasks');
 const doneHeader = document.getElementById('js-completed');
 let uncheckedTasks = todoList.querySelectorAll('input[type=checkbox]');
 let checkedTasks = doneList.querySelectorAll('input[type=checkbox]');
+
+// buttons
 const saveButton = document.getElementById("js-save");
+const deleteButtonTODO = document.getElementById("js-delete-todo");
+const deleteButtonDONE = document.getElementById("js-delete-done");
+
+var numTasks = 0; 
 
 function getCompliments()
 {
@@ -55,6 +60,8 @@ function setNewLength()
     default: 
       document.getElementById('done-counter').innerHTML = "You have completed " + doneListL + " activities so far.";
   }
+
+  numTasks = todoListL + doneListL; 
 }
 
 function getDate()
@@ -127,23 +134,25 @@ function setUnchecked()
 // Adding new task
 const addTask = () => {
   let taskName = taskInput.value;
-  let taskDate = getDate().bold(); 
+  let taskDate = getDate(); 
 
   if (taskName !== '' && taskName !== ' ') 
   {
-    let newTask = createNewTask(taskName + " " + taskDate);
+    let newTask = createNewTask(taskName, taskDate);
 
     todoList.appendChild(newTask); // APPEND the newer child
-    setNewLength()
+
+    setNewLength(); 
     todoList.classList.toggle('show');  
     taskInput.value = '';
   }
 }; 
 
-const createNewTask = (taskTitle) => {
+const createNewTask = (taskTitle, datetoappend) => {
   let listItem = document.createElement('li');
   let checkBox = document.createElement('input');
   let label = document.createElement('label');
+  let labelData = document.createElement('label'); 
   let editInput = document.createElement('input');
   let editButton = document.createElement('button');
   let iconEdit = document.createElement('i');
@@ -157,8 +166,11 @@ const createNewTask = (taskTitle) => {
   editInput.className = 'text-input task__input';
   label.textContent = taskTitle;
   label.className = 'task__title';
+  labelData.textContent = datetoappend; 
+  labelData.className = 'date'; 
   listItem.appendChild(checkBox);
   listItem.appendChild(label);
+  listItem.appendChild(labelData); 
   listItem.appendChild(editInput);
   iconDelete.className = 'material-icons icon__delete';
   iconDelete.textContent = 'delete';
@@ -307,16 +319,35 @@ taskInput.addEventListener('keydown', function (e) {
 });
 buttonAdd.addEventListener('click', addTask);
 
+// delete everything button
+deleteButtonTODO.addEventListener('click', () =>
+    {
+      document.getElementById("js-incomplete-tasks").removeChild(); 
+      setNewLength(); 
+    }
+); 
+
+deleteButtonDONE.addEventListener('click', () =>
+    {
+      document.getElementById("js-completed-tasks").innerHTML = "";
+      setNewLength(); 
+    }
+); 
+
+
 // Local storage
-saveButton.addEventListener('click', () => {
+saveButton.addEventListener('click', () => 
+{
     localStorage.incompleteContent = todoList.innerHTML;
     localStorage.completedContent = doneList.innerHTML;
 });
 
-if (localStorage.getItem('incompleteContent')) {
+if (localStorage.getItem('incompleteContent')) 
+{
   todoList.innerHTML = localStorage.getItem('incompleteContent');
 }
 
-if (localStorage.getItem('completedContent')) {
+if (localStorage.getItem('completedContent')) 
+{
   doneList.innerHTML = localStorage.getItem('completedContent');
 }

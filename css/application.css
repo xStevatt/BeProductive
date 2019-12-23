@@ -6,7 +6,7 @@ html
 
 body 
 {
-  background: #2CC990;
+  background: rgb(187, 94, 159);
   font-family: Roboto, sans-serif; 
 }
 
@@ -74,14 +74,13 @@ h3 {
 
 .date{
   font-family: 'Roboto Condensed', sans-serif;
-  margin-left: 500px;
+  margin-left: 200px;
   font-style: italic;
   position: absolute; 
 }
 
 .text a {
   color: #FFFFFF;
-  text-align: left;
   text-decoration: none;
 }
 
@@ -239,7 +238,8 @@ h3 {
 .save
  {
   font-family: Roboto, sans-serif; 
-  margin-right: 10px;
+  margin-right: 20px;
+  margin-left: 10px;
   width: auto;
   font-size: 16px;
   text-align: left;
@@ -250,7 +250,7 @@ h3 {
   top: -46px;
   padding: 12px;
   border-radius: 0 0 5px 5px;
-  background-color: #e53935;
+  background-color: #35e54c;
   box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5);
   transition-property: color, background-color;
   transition: .3s ease-in-out; 
@@ -260,13 +260,14 @@ h3 {
 .save:focus,
 .save:active 
 {
-  background-color: #9C27B0;
+  background-color: rgb(15, 78, 39);
   color: #FEFEFE;
  }
 
 .delete
 {
   font-family: Roboto, sans-serif; 
+  margin-left: 10px;
   margin-right: 10px;
   width: auto;
   font-size: 16px;
