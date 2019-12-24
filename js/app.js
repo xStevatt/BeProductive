@@ -1,24 +1,31 @@
 const body = document.body;
+
+// GET buttons 
 const labelAdd = document.getElementById('js-label-add');
 const taskInput = document.getElementById('js-new-task');
 const buttonAdd = document.getElementById('js-add-button');
+
+// GET the lists
 const todoList = document.getElementById('js-incomplete-tasks');
 const todoHeader = document.getElementById('js-todo');
 const doneList = document.getElementById('js-completed-tasks');
 const doneHeader = document.getElementById('js-completed');
+
+// GET checkboxes (using let, because checkboxes can change state from checked to unchecked)
 let uncheckedTasks = todoList.querySelectorAll('input[type=checkbox]');
 let checkedTasks = doneList.querySelectorAll('input[type=checkbox]');
 
-// buttons
+// GET action-buttons
 const saveButton = document.getElementById("js-save");
 const deleteButtonTODO = document.getElementById("js-delete-todo");
 const deleteButtonDONE = document.getElementById("js-delete-done");
 const deleteButtonEveryTime = document.getElementById("js-delete-all"); 
 
+// Number of items in the list
 var numTasks = 0; 
 
 
-
+// function that gets a random "compliment" from "complimentr.com" using its API
 function getCompliments()
 {
   let requestURL = 'https://complimentr.com/api';
@@ -30,18 +37,21 @@ function getCompliments()
   request.onload = function() 
   {
     var jsoncompliment = request.response;
-
+    // the phrase is then set in the webpage
     document.getElementById('motivational').innerHTML = jsoncompliment.compliment.toUpperCase();
   }
 }
 
+// counts the new length of the TODO list, we have two lengths: 1. TO-DO length (activities not done yet), and DONE length (activities done)
 function setNewLength()
 {
   var todoListL = todoList.querySelectorAll('input[type=checkbox]').length;
   var doneListL = doneList.querySelectorAll('input[type=checkbox]').length; 
 
+  // SETS a message that contains the number of elements in the two different lists 
   switch(todoListL)
   {
+    // we have different phrases, depending on the number of items in the list 
     case 0: 
       document.getElementById('todo-counter').innerHTML = "You have completed every activity, GOOD JOB!";
       break; 
@@ -54,6 +64,7 @@ function setNewLength()
 
   switch(doneListL)
   {
+    // we have different phrases, depending on the number of items in the list 
     case 0: 
     document.getElementById('done-counter').innerHTML = "You haven't completed any activities!";
       break; 
@@ -67,6 +78,8 @@ function setNewLength()
   numTasks = todoListL + doneListL; 
 }
 
+// function to get the current date, returns a different output depending on the time of the day
+// OUTPUT example: [Name of the day of the week] at [hour:minute:second]
 function getDate()
 {
   var today = new Date(); 
@@ -85,6 +98,8 @@ function getDate()
   return date; 
 }
 
+// function used to create clock that updates automatically. Depending on the time of the day, we have different outputs
+// OUTPUT example: Good evening, it's [hour:minute:second] 
 function startTime()
 {
   var today = new Date(); 
@@ -96,23 +111,27 @@ function startTime()
   m = checkTime(m); 
   s = checkTime(s); 
 
-  if(h > 0)
+  // if the hour is lower than 12 but greater than 0 that we write "Good morning" 
+  if(h >= 0 && h < 12)
   {
-      document.getElementById('time').innerHTML = "Good morning it's: " + h + ":" + m + ":" + s;
+      document.getElementById('time').innerHTML = "Good morning, it's: " + h + ":" + m + ":" + s;
   }
-
-  if(h > 12 && h < 18)
+  // if the hour is lower than 18 but greater than 1 that we write "Good afternoon" 
+  if(h >= 12 && h < 18)
   {
-      document.getElementById('time').innerHTML = "Good afternoon it's: " + h + ":" + m + ":" + s;
+      document.getElementById('time').innerHTML = "Good afternoon, it's: " + h + ":" + m + ":" + s;
   }
-
+  // if the hour is greater of equal to 18 we write "Good evening"
   if(h >= 18)
   {
-      document.getElementById('time').innerHTML = "Good evening it's: " + h + ":" + m + ":" + s;
+      document.getElementById('time').innerHTML = "Good evening, it's: " + h + ":" + m + ":" + s;
   }
+  // the functions call itself with a timeout
   var t = setTimeout(startTime, 500);
 }
 
+// Simple function that corrects the date in case it's formed just by one digit. This way the time looks like a clock
+// OUTPUT example: input is "2" -> output is "02"
 function checkTime(time)
 {
   if(time < 10)
@@ -122,31 +141,33 @@ function checkTime(time)
   return time; 
 }
 
+// function that is loaded "onLoad" in the body tag 
 function start()
 {
-  startTime(); 
-  setNewLength();
-  getCompliments();
-  setChecked(); 
-  setUnchecked();
+  startTime(); // stars the clock
+  setNewLength(); // counts the length of the items in the list
+  getCompliments(); // get a new compliment from complimentr.com
+  setChecked();  // set checkboxs checked if the activity has been done
+  setUnchecked(); // sets checkboxs unchecked if the activity hasn't been done yet 
 }
 
 // Checkboxes always checked/unchecked depending on the list
 function setChecked()
 { 
-  let checkedTasks = doneList.querySelectorAll('input[type=checkbox]');
+  let checkedTasks = doneList.querySelectorAll('input[type=checkbox]');   // gets the input checkboxes
   for(let i = 0; i < checkedTasks.length; i++) 
   {
-    checkedTasks[i].checked = true;
+    checkedTasks[i].checked = true; // sets checked if the item has been already completed
   }
 }
 
+// Checkboxes always checked/unchecked depending on the list
 function setUnchecked()
 {
-  let uncheckedTasks = todoList.querySelectorAll('input[type=checkbox]');
+  let uncheckedTasks = todoList.querySelectorAll('input[type=checkbox]');   // gets the input checkboxes
   for(let i = 0; i < uncheckedTasks.length; i++) 
   {
-    uncheckedTasks[i].checked = false;
+    uncheckedTasks[i].checked = false; // sets unchecked if the item hasn't been completed yet
   }
 }
 
