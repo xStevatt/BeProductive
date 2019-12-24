@@ -188,6 +188,9 @@ const addTask = () => {
   }
 }; 
 
+// function made to create a new task, two attributes to pass: 
+// 1. taskTitle is the title, the name of the element to add
+// 2. datetoappend is the date on which the element was created
 const createNewTask = (taskTitle, datetoappend) => {
   let listItem = document.createElement('li');
   let checkBox = document.createElement('input');
@@ -199,6 +202,7 @@ const createNewTask = (taskTitle, datetoappend) => {
   let iconDelete = document.createElement('i');
   let deleteButton = document.createElement('button');
 
+  // add the checkbox, the label, the labeldata, and the button to edit
   listItem.className = 'task';
   checkBox.type = 'checkbox';
   checkBox.className = 'task__checkbox';
@@ -212,6 +216,8 @@ const createNewTask = (taskTitle, datetoappend) => {
   listItem.appendChild(label);
   listItem.appendChild(labelData); 
   listItem.appendChild(editInput);
+
+  // adds material icons to the every item 
   iconDelete.className = 'material-icons icon__delete';
   iconDelete.textContent = 'delete';
   deleteButton.className = 'button task__delete';
@@ -237,7 +243,6 @@ const editTask = (taskToEdit) =>
   
   if (containsClass) 
   {
-    // cancellare la data, dopo la modifica rimetterlo 
     label.innerText = editInput.value;
     iconEdit.innerText = 'mode_edit';
     checkBox.disabled = false;
@@ -279,6 +284,7 @@ const moveToOtherList = (listItem, currentList) => {
   }
 };
 
+// function that pops a new dialog to confrim the action 
 const confirmDialogue = function (buttonClicked) {
   let listItem = buttonClicked.parentNode;
   let ul = listItem.parentNode;
