@@ -13,6 +13,7 @@ let checkedTasks = doneList.querySelectorAll('input[type=checkbox]');
 const saveButton = document.getElementById("js-save");
 const deleteButtonTODO = document.getElementById("js-delete-todo");
 const deleteButtonDONE = document.getElementById("js-delete-done");
+const deleteButtonEveryTime = document.getElementById("js-delete-all"); 
 
 var numTasks = 0; 
 
@@ -340,18 +341,25 @@ buttonAdd.addEventListener('click', addTask);
 // delete everything button
 deleteButtonTODO.addEventListener('click', () =>
     {
-      document.getElementById("js-incomplete-tasks").innerHTML = "";
+      confirmDialogueDeleteAllTODO(deleteButtonTODO); 
+
       setNewLength(); 
     }
 ); 
 
 deleteButtonDONE.addEventListener('click', () =>
-    {
-      document.getElementById("js-completed-tasks").innerHTML = "";
+    { 
+      confirmDialogueDeleteAllDone(deleteButtonDONE); 
       setNewLength(); 
     }
 ); 
 
+deleteButtonEveryTime.addEventListener('click', () =>
+{ 
+  confirmDialogueDeleteAll(deleteButtonEveryTime); 
+  setNewLength(); 
+}
+); 
 
 // Local storage
 saveButton.addEventListener('click', () => 
@@ -379,3 +387,100 @@ else
 {
   doneList.innerHTML = ""; 
 }
+
+const confirmDialogueDeleteAllTODO = function (buttonClicked) {
+  let listItem = buttonClicked.parentNode;
+  let ul = listItem.parentNode;
+  let noButton = document.createElement('button');
+  let yesButton = document.createElement('button');
+  let divContainer = document.createElement('div');
+  let alertContainer = document.createElement('div');
+  alertContainer.className = 'alert';
+  noButton.textContent = 'No';
+  noButton.setAttribute('class', 'button alert__button alert__button--no');
+  yesButton.setAttribute('class', 'button alert__button alert__button--yes');
+  yesButton.textContent = 'Yes';
+  alertContainer.innerHTML = '<p>Are you sure you want to delete every item in the list TO DO?</p>';
+  alertContainer.appendChild(noButton);
+  alertContainer.appendChild(yesButton);
+  divContainer.className = 'overlay';
+  divContainer.appendChild(alertContainer);
+  body.appendChild(divContainer);
+
+  yesButton.addEventListener('click', function () 
+  {
+    document.getElementById("js-incomplete-tasks").innerHTML = "";
+    body.removeChild(divContainer);
+    setNewLength(); 
+  });
+
+  noButton.addEventListener('click', function () 
+  {
+    body.removeChild(divContainer);
+  });
+};
+
+const confirmDialogueDeleteAllDone = function (buttonClicked) {
+  let listItem = buttonClicked.parentNode;
+  let ul = listItem.parentNode;
+  let noButton = document.createElement('button');
+  let yesButton = document.createElement('button');
+  let divContainer = document.createElement('div');
+  let alertContainer = document.createElement('div');
+  alertContainer.className = 'alert';
+  noButton.textContent = 'No';
+  noButton.setAttribute('class', 'button alert__button alert__button--no');
+  yesButton.setAttribute('class', 'button alert__button alert__button--yes');
+  yesButton.textContent = 'Yes';
+  alertContainer.innerHTML = '<p>Are you sure you want to delete every item in the list DONE?</p>';
+  alertContainer.appendChild(noButton);
+  alertContainer.appendChild(yesButton);
+  divContainer.className = 'overlay';
+  divContainer.appendChild(alertContainer);
+  body.appendChild(divContainer);
+
+  yesButton.addEventListener('click', function () 
+  {
+    document.getElementById("js-completed-tasks").innerHTML = "";
+    body.removeChild(divContainer);
+    setNewLength(); 
+  });
+
+  noButton.addEventListener('click', function () 
+  {
+    body.removeChild(divContainer);
+  });
+};
+
+const confirmDialogueDeleteAll = function (buttonClicked) {
+  let listItem = buttonClicked.parentNode;
+  let ul = listItem.parentNode;
+  let noButton = document.createElement('button');
+  let yesButton = document.createElement('button');
+  let divContainer = document.createElement('div');
+  let alertContainer = document.createElement('div');
+  alertContainer.className = 'alert';
+  noButton.textContent = 'No';
+  noButton.setAttribute('class', 'button alert__button alert__button--no');
+  yesButton.setAttribute('class', 'button alert__button alert__button--yes');
+  yesButton.textContent = 'Yes';
+  alertContainer.innerHTML = '<p>Are you sure you want to delete every item in the list?</p>';
+  alertContainer.appendChild(noButton);
+  alertContainer.appendChild(yesButton);
+  divContainer.className = 'overlay';
+  divContainer.appendChild(alertContainer);
+  body.appendChild(divContainer);
+
+  yesButton.addEventListener('click', function () 
+  {
+    document.getElementById("js-completed-tasks").innerHTML = "";
+    document.getElementById("js-incomplete-tasks").innerHTML = "";
+    body.removeChild(divContainer);
+    setNewLength(); 
+  });
+
+  noButton.addEventListener('click', function () 
+  {
+    body.removeChild(divContainer);
+  });
+};
