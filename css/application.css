@@ -96,8 +96,8 @@ h3 {
 }
 
 .date{
-  font-family: 'Roboto Condensed', sans-serif;
-  margin-left: 200px;
+  font-family: 'Roboto mono', monospace;
+  margin-left: 190px;
   font-style: italic;
   position: absolute; 
 }
@@ -497,6 +497,7 @@ h3 {
 {
   display: none;
   margin-top: 1px;
+  margin-left: 10px;
   margin-bottom: 4px;
   padding: 8px 0 9px 11px; 
 }
