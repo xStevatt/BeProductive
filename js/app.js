@@ -16,6 +16,8 @@ const deleteButtonDONE = document.getElementById("js-delete-done");
 
 var numTasks = 0; 
 
+
+
 function getCompliments()
 {
   let requestURL = 'https://complimentr.com/api';
@@ -75,7 +77,10 @@ function getDate()
   m = checkTime(m); 
   s = checkTime(s); 
 
-  var date = h + ":" + m + ":" + s; 
+  var daysOftheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; 
+  console.log(daysOftheWeek[today.getDay()]); 
+
+  var date = daysOftheWeek[today.getDay()] + " at " + h + ":" + m + ":" + s; 
   return date; 
 }
 
@@ -350,7 +355,9 @@ deleteButtonDONE.addEventListener('click', () =>
 
 // Local storage
 saveButton.addEventListener('click', () => 
-{
+{ 
+    console.log(todoList.innerHTML.length > 0 ? true : false); 
+
     localStorage.incompleteContent = todoList.innerHTML;
     localStorage.completedContent = doneList.innerHTML;
 });
@@ -359,8 +366,16 @@ if (localStorage.getItem('incompleteContent'))
 {
   todoList.innerHTML = localStorage.getItem('incompleteContent');
 }
+else
+{
+  todoList.innerHTML = ""; 
+}
 
 if (localStorage.getItem('completedContent')) 
 {
   doneList.innerHTML = localStorage.getItem('completedContent');
+}
+else
+{
+  doneList.innerHTML = ""; 
 }
