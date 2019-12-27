@@ -506,6 +506,7 @@ const confirmDialogueDeleteAllDone = function (buttonClicked) {
   });
 };
 
+
 // funtion creates a pop-up when the "DELETE ALL" button is pressed
 const confirmDialogueDeleteAll = function (buttonClicked) {
   let listItem = buttonClicked.parentNode;
