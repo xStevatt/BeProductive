@@ -176,13 +176,16 @@ const addTask = () => {
   let taskName = taskInput.value;
   let taskDate = getDate(); 
 
+  // checks that taskName isn't null
   if (taskName !== '' && taskName !== ' ') 
   {
+    // creates a new task
     let newTask = createNewTask(taskName, taskDate);
 
+    // appends the new child
     todoList.appendChild(newTask); // APPEND the newer child
 
-    setNewLength(); 
+    setNewLength(); // sets a new length 
     todoList.classList.toggle('show');  
     taskInput.value = '';
   }
@@ -267,16 +270,22 @@ const editTask = (taskToEdit) =>
   listItem.classList.toggle('is-editing');
 };
 
+// MOVES an item to the other list (ex. TODO -> DONE, DONE -> TODO)
+// we need to pass 
+              //  -> 1. listItem: which is the item to move
+              //  -> 2. currentList: which is the list in which the item is currently staying in 
 const moveToOtherList = (listItem, currentList) => {
-  let label = listItem.getElementsByTagName('label')[0];
+  let label = listItem.getElementsByTagName('label')[0];  
   label.classList.toggle('is-done');
 
   switch (currentList) 
   {
+    // In case the item is in the "TO-DO list" which is the incompleted, we then move it to the DONE LIST
     case 'js-incomplete-tasks':
       doneList.appendChild(listItem);
       setNewLength(); 
       break;
+    // In case the item is in the "DONE list" which is the completed, we then move it to the TO-DO LIST
     case 'js-completed-tasks':
       todoList.appendChild(listItem);
       setNewLength(); 
@@ -284,7 +293,110 @@ const moveToOtherList = (listItem, currentList) => {
   }
 };
 
-// function that pops a new dialog to confrim the action 
+
+// ADD EVENT LISTENERS TO EDIT/DELETE BUTTONS
+const whatToDo = (e) => 
+{
+  let listItem = e.target.parentNode;
+  // EDIT-ICON
+  if (e.target.classList.contains('icon__edit'))
+  {
+    listItem = e.target.parentNode.parentNode;
+    editTask(listItem);
+  } 
+  // EDIT-TITLE
+  else if (e.target.classList.contains('task__title')) 
+  {
+    editTask(listItem);
+  }
+  // DELETE BUTTON
+  else if (e.target.classList.contains('icon__delete')) 
+  {
+    let buttonClicked = e.target.parentNode;
+    confirmDialogue(buttonClicked);
+  } 
+  // CHECKBOX
+  else if (e.target.type === 'checkbox') 
+  {
+    let currentList = listItem.parentNode.id;
+    moveToOtherList(listItem, currentList);
+  }
+};
+
+todoList.addEventListener('click', whatToDo);
+doneList.addEventListener('click', whatToDo);
+// Accordion
+todoHeader.addEventListener('click', () => todoList.classList.toggle('is-hidden'));
+doneHeader.addEventListener('click', () => doneList.classList.toggle('is-hidden'));
+labelAdd.addEventListener('click', () => 
+{
+  buttonAdd.classList.toggle('is-hidden');
+  taskInput.classList.toggle('is-hidden');
+});
+
+// LISTENERS 
+// -> 1. ADD A NEW TASK (pressing enter)
+taskInput.addEventListener('keydown', function (e) {
+  if (e.which === 13) //enter
+  {
+    addTask(); // calls the method to add a task
+  }
+});
+buttonAdd.addEventListener('click', addTask);
+
+// -> 2. DELETE TO-DO ITEMS LIST 
+deleteButtonTODO.addEventListener('click', () =>
+    {
+      confirmDialogueDeleteAllTODO(deleteButtonTODO); // calls the method that pops the message to confirm action
+
+      setNewLength(); // After we delete all the list, we need to check the new length
+    }
+); 
+
+// -> 3. DELETE DONE ITEMS LIST 
+deleteButtonDONE.addEventListener('click', () =>
+    { 
+      confirmDialogueDeleteAllDone(deleteButtonDONE); // calls the method that pops the message to confirm action
+      setNewLength(); // After we delete all the list, we need to check the new length
+    }
+); 
+
+// -> 4. DELETE ALL THE LISTS
+deleteButtonEveryTime.addEventListener('click', () =>
+{ 
+  confirmDialogueDeleteAll(deleteButtonEveryTime); // calls the method that pops the message to confirm action
+  setNewLength(); // After we delete all the list, we need to check the new length
+}
+); 
+
+// LOCAL STORAGE -> whenever the user presses "save", all the items get saved in localStorage 
+saveButton.addEventListener('click', () => 
+{ 
+    console.log(todoList.innerHTML.length > 0 ? true : false); // check if length is > 0 (fixing a bug that doesn't allow to save if == 0)
+
+    localStorage.incompleteContent = todoList.innerHTML;   // saves the inner HTML "todolist" into localstorage
+    localStorage.completedContent = doneList.innerHTML; // saves the inner HTML "donelist" into localstorage
+});
+
+if (localStorage.getItem('incompleteContent')) // gets the content
+{
+  todoList.innerHTML = localStorage.getItem('incompleteContent'); // sets the list with the old content
+}
+else
+{
+  todoList.innerHTML = ""; // in case "incompleteContent" is empty we just set the inner HTML emtpy  
+}
+
+if (localStorage.getItem('completedContent')) // gets the content
+{
+  doneList.innerHTML = localStorage.getItem('completedContent');  // sets the list with the old content
+}
+else
+{
+  doneList.innerHTML = "";  // in case "incompleteContent" is empty we just set the inner HTML emtpy  
+}
+
+// funtion creates a pop-up when the "DELETE TO-DO" button is pressed
 const confirmDialogue = function (buttonClicked) {
   let listItem = buttonClicked.parentNode;
   let ul = listItem.parentNode;
@@ -321,100 +433,7 @@ const deleteTask = function (ul, listItem, divContainer,) {
   body.removeChild(divContainer);
 };
 
-
-// Add event listeners to edit/delete buttons
-const whatToDo = (e) => 
-{
-  let listItem = e.target.parentNode;
-  if (e.target.classList.contains('icon__edit'))
-   {
-    listItem = e.target.parentNode.parentNode;
-    editTask(listItem);
-  } else if (e.target.classList.contains('task__title')) 
-  {
-    editTask(listItem);
-  }
-  else if (e.target.classList.contains('icon__delete')) 
-  {
-    let buttonClicked = e.target.parentNode;
-    confirmDialogue(buttonClicked);
-  } 
-  else if (e.target.type === 'checkbox') 
-  {
-    let currentList = listItem.parentNode.id;
-    moveToOtherList(listItem, currentList);
-  }
-};
-
-todoList.addEventListener('click', whatToDo);
-doneList.addEventListener('click', whatToDo);
-// Accordion
-todoHeader.addEventListener('click', () => todoList.classList.toggle('is-hidden'));
-doneHeader.addEventListener('click', () => doneList.classList.toggle('is-hidden'));
-labelAdd.addEventListener('click', () => {
-  buttonAdd.classList.toggle('is-hidden');
-  taskInput.classList.toggle('is-hidden');
-});
-
-// Add new task - listeners
-taskInput.addEventListener('keydown', function (e) {
-  if (e.which === 13) //enter
-  {
-    addTask();
-  }
-});
-buttonAdd.addEventListener('click', addTask);
-
-// delete everything button
-deleteButtonTODO.addEventListener('click', () =>
-    {
-      confirmDialogueDeleteAllTODO(deleteButtonTODO); 
-
-      setNewLength(); 
-    }
-); 
-
-deleteButtonDONE.addEventListener('click', () =>
-    { 
-      confirmDialogueDeleteAllDone(deleteButtonDONE); 
-      setNewLength(); 
-    }
-); 
-
-deleteButtonEveryTime.addEventListener('click', () =>
-{ 
-  confirmDialogueDeleteAll(deleteButtonEveryTime); 
-  setNewLength(); 
-}
-); 
-
-// Local storage
-saveButton.addEventListener('click', () => 
-{ 
-    console.log(todoList.innerHTML.length > 0 ? true : false); 
-
-    localStorage.incompleteContent = todoList.innerHTML;
-    localStorage.completedContent = doneList.innerHTML;
-});
-
-if (localStorage.getItem('incompleteContent')) 
-{
-  todoList.innerHTML = localStorage.getItem('incompleteContent');
-}
-else
-{
-  todoList.innerHTML = ""; 
-}
-
-if (localStorage.getItem('completedContent')) 
-{
-  doneList.innerHTML = localStorage.getItem('completedContent');
-}
-else
-{
-  doneList.innerHTML = ""; 
-}
-
+// funtion creates a pop-up when the "DELETE TO-DO" button is pressed
 const confirmDialogueDeleteAllTODO = function (buttonClicked) {
   let listItem = buttonClicked.parentNode;
   let ul = listItem.parentNode;
@@ -434,19 +453,24 @@ const confirmDialogueDeleteAllTODO = function (buttonClicked) {
   divContainer.appendChild(alertContainer);
   body.appendChild(divContainer);
 
+  // IF YES -> 
   yesButton.addEventListener('click', function () 
   {
+    // the content of the ul gets deleted
     document.getElementById("js-incomplete-tasks").innerHTML = "";
     body.removeChild(divContainer);
     setNewLength(); 
   });
 
+  // IF NO -> 
   noButton.addEventListener('click', function () 
   {
+    // the pop-up gets removed from the screen 
     body.removeChild(divContainer);
   });
 };
 
+// funtion creates a pop-up when the "DELETE DONE" button is pressed
 const confirmDialogueDeleteAllDone = function (buttonClicked) {
   let listItem = buttonClicked.parentNode;
   let ul = listItem.parentNode;
@@ -466,6 +490,7 @@ const confirmDialogueDeleteAllDone = function (buttonClicked) {
   divContainer.appendChild(alertContainer);
   body.appendChild(divContainer);
 
+  // IF YES -> 
   yesButton.addEventListener('click', function () 
   {
     document.getElementById("js-completed-tasks").innerHTML = "";
@@ -473,12 +498,15 @@ const confirmDialogueDeleteAllDone = function (buttonClicked) {
     setNewLength(); 
   });
 
+  // IF NO -> 
   noButton.addEventListener('click', function () 
   {
+    // the pop-up gets removed from the screen 
     body.removeChild(divContainer);
   });
 };
 
+// funtion creates a pop-up when the "DELETE ALL" button is pressed
 const confirmDialogueDeleteAll = function (buttonClicked) {
   let listItem = buttonClicked.parentNode;
   let ul = listItem.parentNode;
