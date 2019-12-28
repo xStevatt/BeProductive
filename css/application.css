@@ -33,8 +33,9 @@ h3 {
   list-style: none; 
 }
 
-/* PARTICLES.JS  */
-#particles-js canvas {
+/* START PARTICLES.JS  */
+#particles-js canvas 
+{
   display: block;
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
@@ -44,7 +45,8 @@ h3 {
   transition: opacity .8s ease, transform 1.4s ease
 }
 
-#particles-js {
+#particles-js
+ {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -54,13 +56,10 @@ h3 {
 }
 /* end of PARTICLES.JS  */
 
-.counter{
-  text-align: right;
-  font-style: italic;
-  color: #888; 
-}
 
-.svg-wrapper {
+/* start of END PAGE LOGO */
+.svg-wrapper 
+{
   font-family: 'Roboto Condensed', sans-serif;
   letter-spacing: 8px; 
   position: relative;
@@ -93,6 +92,14 @@ h3 {
   color: #fff;
   top: -48px;
   position: relative;
+}
+/* end of END PAGE LOGO */
+
+.counter
+{
+  text-align: right;
+  font-style: italic;
+  color: #888; 
 }
 
 .date{
