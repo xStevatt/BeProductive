@@ -155,6 +155,7 @@ function start()
 function setChecked()
 { 
   let checkedTasks = doneList.querySelectorAll('input[type=checkbox]');   // gets the input checkboxes
+  
   for(let i = 0; i < checkedTasks.length; i++) 
   {
     checkedTasks[i].checked = true; // sets checked if the item has been already completed
@@ -400,10 +401,12 @@ else
 const confirmDialogue = function (buttonClicked) {
   let listItem = buttonClicked.parentNode;
   let ul = listItem.parentNode;
+
   let noButton = document.createElement('button');
   let yesButton = document.createElement('button');
   let divContainer = document.createElement('div');
   let alertContainer = document.createElement('div');
+
   alertContainer.className = 'alert';
   noButton.textContent = 'No';
   noButton.setAttribute('class', 'button alert__button alert__button--no');
@@ -437,10 +440,12 @@ const deleteTask = function (ul, listItem, divContainer,) {
 const confirmDialogueDeleteAllTODO = function (buttonClicked) {
   let listItem = buttonClicked.parentNode;
   let ul = listItem.parentNode;
+
   let noButton = document.createElement('button');
   let yesButton = document.createElement('button');
   let divContainer = document.createElement('div');
   let alertContainer = document.createElement('div');
+
   alertContainer.className = 'alert';
   noButton.textContent = 'No';
   noButton.setAttribute('class', 'button alert__button alert__button--no');
@@ -474,10 +479,12 @@ const confirmDialogueDeleteAllTODO = function (buttonClicked) {
 const confirmDialogueDeleteAllDone = function (buttonClicked) {
   let listItem = buttonClicked.parentNode;
   let ul = listItem.parentNode;
+
   let noButton = document.createElement('button');
   let yesButton = document.createElement('button');
   let divContainer = document.createElement('div');
   let alertContainer = document.createElement('div');
+
   alertContainer.className = 'alert';
   noButton.textContent = 'No';
   noButton.setAttribute('class', 'button alert__button alert__button--no');
@@ -510,10 +517,12 @@ const confirmDialogueDeleteAllDone = function (buttonClicked) {
 const confirmDialogueDeleteAll = function (buttonClicked) {
   let listItem = buttonClicked.parentNode;
   let ul = listItem.parentNode;
+
   let noButton = document.createElement('button');
   let yesButton = document.createElement('button');
   let divContainer = document.createElement('div');
   let alertContainer = document.createElement('div');
+  
   alertContainer.className = 'alert';
   noButton.textContent = 'No';
   noButton.setAttribute('class', 'button alert__button alert__button--no');
