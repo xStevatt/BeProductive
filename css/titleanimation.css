@@ -1,6 +1,7 @@
 /* THIS css manages the title of the page (css animation) */
 
-.titlecontainer{
+.titlecontainer
+{
   margin-top: 100px ;
   text-align: center;
   position: relative;
@@ -9,11 +10,15 @@
   transform: translate(-50%,-50%);
   width: 100%;
 }
-.titlecontainer span{
+
+.titlecontainer span
+{
   text-transform: uppercase;
   display: block;
 }
-.text1{
+
+.text1
+{
   font-family: 'Roboto Mono', monospace;
   color: white;
   font-size: 60px;
@@ -23,6 +28,7 @@
   position: relative;
   animation: text 3s 1;
 }
+
 .text2{
   font-family: 'Roboto Mono', monospace;
   font-size: 30px;
