@@ -23,6 +23,8 @@ const deleteButtonEveryTime = document.getElementById("js-delete-all");
 
 // Number of items in the list
 var numTasks = 0; 
+var todoListL = 0; 
+var doneListL = 0;
 
 
 // function that gets a random "compliment" from "complimentr.com" using its API
@@ -45,8 +47,8 @@ function getCompliments()
 // counts the new length of the TODO list, we have two lengths: 1. TO-DO length (activities not done yet), and DONE length (activities done)
 function setNewLength()
 {
-  var todoListL = todoList.querySelectorAll('input[type=checkbox]').length;
-  var doneListL = doneList.querySelectorAll('input[type=checkbox]').length; 
+  todoListL = todoList.querySelectorAll('input[type=checkbox]').length;
+  doneListL = doneList.querySelectorAll('input[type=checkbox]').length; 
 
   // SETS a message that contains the number of elements in the two different lists 
   switch(todoListL)
@@ -98,6 +100,7 @@ function getDate()
   return date; 
 }
 
+
 // function used to create clock that updates automatically. Depending on the time of the day, we have different outputs
 // OUTPUT example: Good evening, it's [hour:minute:second] 
 function startTime()
@@ -136,9 +139,26 @@ function checkTime(time)
 {
   if(time < 10)
   {
-    time = "0" + time; 
+    time = "0" + time; // adds a 0. 
   }
   return time; 
+}
+
+// function that calculates the percentage of the items done
+function getPercentage()
+{
+
+  if(todoListL === 0 && doneListL === 0)
+  {
+    document.getElementById("percentage-Completed").innerHTML = "You've completed " + doneListL + "/" + (todoListL + doneListL) + " items "; 
+  }
+  else
+  {
+    var percentage = ((doneListL * 100) / (todoListL + doneListL)); 
+  }
+
+  document.getElementById("percentage-Completed").innerHTML = "You've completed " + doneListL + "/" + (todoListL + doneListL) + " items " + (" - (" + percentage.toFixed(0) + "%" + " of your schedule)").bold();
+
 }
 
 // function that is loaded "onLoad" in the body tag 
@@ -149,6 +169,7 @@ function start()
   getCompliments(); // get a new compliment from complimentr.com
   setChecked();  // set checkboxs checked if the activity has been done
   setUnchecked(); // sets checkboxs unchecked if the activity hasn't been done yet 
+  getPercentage(); // sets the percentage of the items completed
 }
 
 // Checkboxes always checked/unchecked depending on the list
@@ -176,7 +197,7 @@ function setUnchecked()
 const addTask = () => {
   let taskName = taskInput.value;
   let taskDate = getDate(); 
-
+    taskInput.value = '';
   // checks that taskName isn't null
   if (taskName !== '' && taskName !== ' ') 
   {
@@ -187,10 +208,13 @@ const addTask = () => {
     todoList.appendChild(newTask); // APPEND the newer child
 
     setNewLength(); // sets a new length 
+    getPercentage(); 
     todoList.classList.toggle('show');  
     taskInput.value = '';
   }
 }; 
+
+
 
 // function made to create a new task, two attributes to pass: 
 // 1. taskTitle is the title, the name of the element to add
@@ -285,11 +309,13 @@ const moveToOtherList = (listItem, currentList) => {
     case 'js-incomplete-tasks':
       doneList.appendChild(listItem);
       setNewLength(); 
+      getPercentage(); 
       break;
     // In case the item is in the "DONE list" which is the completed, we then move it to the TO-DO LIST
     case 'js-completed-tasks':
       todoList.appendChild(listItem);
       setNewLength(); 
+      getPercentage(); 
       break;
   }
 };
@@ -351,6 +377,7 @@ deleteButtonTODO.addEventListener('click', () =>
       confirmDialogueDeleteAllTODO(deleteButtonTODO); // calls the method that pops the message to confirm action
 
       setNewLength(); // After we delete all the list, we need to check the new length
+      getPercentage(); 
     }
 ); 
 
@@ -359,6 +386,7 @@ deleteButtonDONE.addEventListener('click', () =>
     { 
       confirmDialogueDeleteAllDone(deleteButtonDONE); // calls the method that pops the message to confirm action
       setNewLength(); // After we delete all the list, we need to check the new length
+      getPercentage(); 
     }
 ); 
 
@@ -367,6 +395,7 @@ deleteButtonEveryTime.addEventListener('click', () =>
 { 
   confirmDialogueDeleteAll(deleteButtonEveryTime); // calls the method that pops the message to confirm action
   setNewLength(); // After we delete all the list, we need to check the new length
+  getPercentage(); 
 }
 ); 
 
@@ -423,6 +452,7 @@ const confirmDialogue = function (buttonClicked) {
   {
     deleteTask(ul, listItem, divContainer);
     setNewLength(); 
+    getPercentage(); 
   });
 
   noButton.addEventListener('click', function () 
@@ -465,6 +495,7 @@ const confirmDialogueDeleteAllTODO = function (buttonClicked) {
     document.getElementById("js-incomplete-tasks").innerHTML = "";
     body.removeChild(divContainer);
     setNewLength(); 
+    getPercentage(); 
   });
 
   // IF NO -> 
@@ -503,6 +534,7 @@ const confirmDialogueDeleteAllDone = function (buttonClicked) {
     document.getElementById("js-completed-tasks").innerHTML = "";
     body.removeChild(divContainer);
     setNewLength(); 
+    getPercentage(); 
   });
 
   // IF NO -> 
@@ -541,6 +573,7 @@ const confirmDialogueDeleteAll = function (buttonClicked) {
     document.getElementById("js-incomplete-tasks").innerHTML = "";
     body.removeChild(divContainer);
     setNewLength(); 
+    getPercentage(); 
   });
 
   noButton.addEventListener('click', function () 

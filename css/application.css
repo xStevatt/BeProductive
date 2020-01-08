@@ -115,6 +115,10 @@ h3 {
   text-decoration: none;
 }
 
+.percentageCompleted{
+  margin: 20px;
+}
+
 .svg-wrapper:hover .shape 
 {
   font-family: 'Roboto Condensed', sans-serif;
